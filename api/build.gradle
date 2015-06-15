@@ -1,0 +1,30 @@
+apply plugin: 'com.android.library'
+apply plugin: 'bintray-release'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "23.0.0 rc2"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 22
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+publish {
+    userOrg = 'emilsjolander'
+    groupId = 'se.emilsjolander'
+    artifactId = 'intentbuilder-api'
+    version = VERSION
+    description = 'Generate type safe code for building intents.'
+    website = 'https://github.com/emilsjolander/intentbuilder'
+    licences = ['Apache-2.0']
+}

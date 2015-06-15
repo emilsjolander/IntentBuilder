@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">IntentBuilder Sample</string>
+    <string name="detail">Detail</string>
+</resources>
