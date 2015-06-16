@@ -43,7 +43,7 @@ class DetailActivity extends Activity {
 		// TODO use id and title
 	}
 
-startService(new DetailActivityIntentBuilder("12345")
+startActivity(new DetailActivityIntentBuilder("12345")
 	.title("MyTitle")
 	.build())
 }
