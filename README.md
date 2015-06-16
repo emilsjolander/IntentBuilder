@@ -1,4 +1,6 @@
 #IntentBuilder
+Type safe intent building for services and activities.
+
 IntentBuilder is a type safe way of creating intents and populating them with extras. Intents were created to be very dynamic but often times the dynamic nature of intents is not needed and just gets in the way of writing safe code.
 
 ##Installation
