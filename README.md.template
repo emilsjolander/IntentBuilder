@@ -23,6 +23,7 @@ dependencies {
 ##Usage
 Annotate your activities and services with an `@IntentBuilder` annotation so that they are picked up by the library. For every class with an `@IntentBuilder` annotation a class named `MyActivityIntentBuilder` will be generated (Replace 'MyActivity' in the class name whith whatever the name of your Activity or Service class is). If your activity or service takes in parameters via extras in the intent you can now mark field with the `@Extra` annotation and they can be injected with the static `inject` method on the generated intent builder class. Extras can be marked as optional with the `@Optional` annotation.
 
+Sample activity using IntentBuilder:
 ```java
 @IntentBuilder
 class DetailActivity extends Activity {
@@ -40,4 +41,26 @@ class DetailActivity extends Activity {
 		// TODO use id and title
 	}
 
+startService(new DetailActivityIntentBuilder("12345")
+	.title("MyTitle")
+	.build())
 }
+```
+
+Sample service using IntentBuilder:
+```java
+@IntentBuilder
+class DownloadService extends IntentService {
+
+    @Extra
+    String downloadUrl;
+	
+	@Override
+    protected void onHandleIntent(Intent intent) {
+        MyServiceIntentBuilder.inject(intent, this);
+    }
+
+}
+
+startService(new DownloadServiceIntentBuilder("http://google.com").build())
+```
