@@ -17,8 +17,8 @@ buildscript {
 apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
-    compile 'se.emilsjolander:intentbuilder-api:0.9.0'
-    apt 'se.emilsjolander:intentbuilder-compiler:0.9.0'
+    compile 'se.emilsjolander:intentbuilder-api:0.10.0'
+    apt 'se.emilsjolander:intentbuilder-compiler:0.10.0'
 }
 ```
 
@@ -45,7 +45,7 @@ class DetailActivity extends Activity {
 
 startActivity(new DetailActivityIntentBuilder("12345")
 	.title("MyTitle")
-	.build())
+	.build(context))
 }
 ```
 
@@ -64,5 +64,5 @@ class DownloadService extends IntentService {
 
 }
 
-startService(new DownloadServiceIntentBuilder("http://google.com").build())
+startService(new DownloadServiceIntentBuilder("http://google.com").build(context))
 ```

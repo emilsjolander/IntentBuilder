@@ -45,7 +45,7 @@ class DetailActivity extends Activity {
 
 startActivity(new DetailActivityIntentBuilder("12345")
 	.title("MyTitle")
-	.build())
+	.build(context))
 }
 ```
 
@@ -64,5 +64,5 @@ class DownloadService extends IntentService {
 
 }
 
-startService(new DownloadServiceIntentBuilder("http://google.com").build())
+startService(new DownloadServiceIntentBuilder("http://google.com").build(context))
 ```
