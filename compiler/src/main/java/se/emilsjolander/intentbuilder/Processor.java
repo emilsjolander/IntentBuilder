@@ -1,5 +1,6 @@
 package se.emilsjolander.intentbuilder;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -135,7 +136,8 @@ public class Processor extends AbstractProcessor {
 
         MethodSpec.Builder buildMethod = MethodSpec.methodBuilder("build")
                 .addModifiers(Modifier.PUBLIC)
-                .addStatement("$T intent = new Intent()", Intent.class);
+                .addParameter(Context.class, "context")
+                .addStatement("$T intent = new Intent(context, $T.class)", Intent.class, TypeName.get(annotatedElement.asType()));
         for (Element e : all) {
             String paramName = e.getSimpleName().toString();
             buildMethod.addStatement("intent.putExtra($S, $N)", paramName, paramName);
