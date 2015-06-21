@@ -66,3 +66,6 @@ class DownloadService extends IntentService {
 
 startService(new DownloadServiceIntentBuilder("http://google.com").build(context))
 ```
+
+##Contributing
+Contributions are very welcome! Both bug fixes and additional features if they make sense. Open a pull request to discuss any changes :)
