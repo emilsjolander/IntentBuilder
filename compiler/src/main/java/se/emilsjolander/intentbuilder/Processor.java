@@ -155,6 +155,8 @@ public class Processor extends AbstractProcessor {
             String paramName = e.getSimpleName().toString();
             injectMethod.beginControlFlow("if (extras.containsKey($S))", paramName);
             injectMethod.addStatement("activity.$N = ($T) extras.get($S)", paramName, e.asType(), paramName);
+            injectMethod.nextControlFlow("else");
+            injectMethod.addStatement("activity.$N = null", paramName);
             injectMethod.endControlFlow();
         }
         builder.addMethod(injectMethod.build());
