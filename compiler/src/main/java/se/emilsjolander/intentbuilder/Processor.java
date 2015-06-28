@@ -153,7 +153,9 @@ public class Processor extends AbstractProcessor {
                 .addStatement("$T extras = intent.getExtras()", Bundle.class);
         for (Element e : all) {
             String paramName = e.getSimpleName().toString();
+            injectMethod.beginControlFlow("if (extras.containsKey($S))", paramName);
             injectMethod.addStatement("activity.$N = ($T) extras.get($S)", paramName, e.asType(), paramName);
+            injectMethod.endControlFlow();
         }
         builder.addMethod(injectMethod.build());
 
