@@ -11,6 +11,7 @@ import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,9 +23,11 @@ import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
@@ -96,15 +99,7 @@ public class Processor extends AbstractProcessor {
         List<Element> optional = new ArrayList<>();
         List<Element> all = new ArrayList<>();
 
-        for (Element e : annotatedElement.getEnclosedElements()) {
-            if (e.getAnnotation(Extra.class) != null) {
-                if (e.getAnnotation(se.emilsjolander.intentbuilder.Optional.class) != null) {
-                    optional.add(e);
-                } else {
-                    required.add(e);
-                }
-            }
-        }
+        getAnnotatedFields(annotatedElement, required, optional);
         all.addAll(required);
         all.addAll(optional);
 
@@ -162,6 +157,25 @@ public class Processor extends AbstractProcessor {
         builder.addMethod(injectMethod.build());
 
         return builder.build();
+    }
+
+    private void getAnnotatedFields(Element annotatedElement, List<Element> required, List<Element> optional) {
+        for (Element e : annotatedElement.getEnclosedElements()) {
+            if (e.getAnnotation(Extra.class) != null) {
+                if (e.getAnnotation(se.emilsjolander.intentbuilder.Optional.class) != null) {
+                    optional.add(e);
+                } else {
+                    required.add(e);
+                }
+            }
+        }
+
+        List<? extends TypeMirror> superTypes = Processor.instance.typeUtils.directSupertypes(annotatedElement.asType());
+        TypeMirror superClassType = superTypes.size() > 0 ? superTypes.get(0) : null;
+        Element superClass = superClassType == null ? null : Processor.instance.typeUtils.asElement(superClassType);
+        if (superClass != null && superClass.getKind() == ElementKind.CLASS) {
+            getAnnotatedFields(superClass, required, optional);
+        }
     }
 
 }
