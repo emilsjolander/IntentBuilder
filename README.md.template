@@ -23,7 +23,7 @@ dependencies {
 ```
 
 ##Usage
-Annotate your activities and services with an `@IntentBuilder` annotation so that they are picked up by the library. For every class with an `@IntentBuilder` annotation a class named `MyActivityIntentBuilder` will be generated (Replace 'MyActivity' in the class name whith whatever the name of your Activity or Service class is). If your activity or service takes in parameters via extras in the intent you can now mark field with the `@Extra` annotation and they can be injected with the static `inject` method on the generated intent builder class. Extras can be marked as optional with the `@Optional` annotation.
+Annotate your activities and services with an `@IntentBuilder` annotation so that they are picked up by the library. For every class with an `@IntentBuilder` annotation a class named `MyActivityIntentBuilder` will be generated (Replace 'MyActivity' in the class name whith whatever the name of your Activity or Service class is). If your activity or service takes in parameters via extras in the intent you can now mark field with the `@Extra` annotation and they can be injected with the static `inject` method on the generated intent builder class. Extras can be marked as optional with the `@Nullable` annotation.
 
 Sample activity using IntentBuilder:
 ```java
@@ -33,7 +33,7 @@ class DetailActivity extends Activity {
 	@Extra
 	String id;
 
-	@Extra @Optional 
+	@Extra @Nullable
 	String title;
 
 	@Override
