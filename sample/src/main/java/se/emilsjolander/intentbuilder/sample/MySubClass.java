@@ -1,20 +1,18 @@
 package se.emilsjolander.intentbuilder.sample;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
+import android.support.annotation.Nullable;
 
 import se.emilsjolander.intentbuilder.Extra;
 import se.emilsjolander.intentbuilder.IntentBuilder;
-import se.emilsjolander.intentbuilder.Optional;
 
 @IntentBuilder
 public class MySubClass extends MySuperClass {
 
-    @Extra @Optional
+    @Extra @Nullable
     String three;
 
-    @Extra @Optional
+    @Extra @Nullable
     String four;
 
     @Override

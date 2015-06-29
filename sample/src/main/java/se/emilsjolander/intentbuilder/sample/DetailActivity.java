@@ -1,12 +1,12 @@
 package se.emilsjolander.intentbuilder.sample;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import se.emilsjolander.intentbuilder.Extra;
 import se.emilsjolander.intentbuilder.IntentBuilder;
-import se.emilsjolander.intentbuilder.Optional;
 
 @IntentBuilder
 public class DetailActivity extends AppCompatActivity {
@@ -17,10 +17,10 @@ public class DetailActivity extends AppCompatActivity {
     @Extra
     String two;
 
-    @Extra @Optional
+    @Extra @Nullable
     String three;
 
-    @Extra @Optional
+    @Extra @Nullable
     String four;
 
     @Override

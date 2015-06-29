@@ -22,6 +22,7 @@ import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
+import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.Modifier;
@@ -162,7 +163,7 @@ public class Processor extends AbstractProcessor {
     private void getAnnotatedFields(Element annotatedElement, List<Element> required, List<Element> optional) {
         for (Element e : annotatedElement.getEnclosedElements()) {
             if (e.getAnnotation(Extra.class) != null) {
-                if (e.getAnnotation(se.emilsjolander.intentbuilder.Optional.class) != null) {
+                if (hasAnnotation(e, "Nullable")) {
                     optional.add(e);
                 } else {
                     required.add(e);
@@ -176,6 +177,15 @@ public class Processor extends AbstractProcessor {
         if (superClass != null && superClass.getKind() == ElementKind.CLASS) {
             getAnnotatedFields(superClass, required, optional);
         }
+    }
+
+    private boolean hasAnnotation(Element e, String name) {
+        for (AnnotationMirror annotation : e.getAnnotationMirrors()) {
+            if (annotation.getAnnotationType().asElement().getSimpleName().toString().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
