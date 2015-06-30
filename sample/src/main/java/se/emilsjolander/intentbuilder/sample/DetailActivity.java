@@ -3,6 +3,7 @@ package se.emilsjolander.intentbuilder.sample;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 import se.emilsjolander.intentbuilder.Extra;
@@ -30,9 +31,9 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         ((TextView)findViewById(R.id.one)).setText(one);
-        ((TextView)findViewById(R.id.one)).setText(two);
-        ((TextView)findViewById(R.id.one)).setText(three);
-        ((TextView)findViewById(R.id.one)).setText(four);
+        ((TextView)findViewById(R.id.two)).setText(two);
+        ((TextView)findViewById(R.id.three)).setText(three);
+        ((TextView)findViewById(R.id.four)).setText(four);
     }
 
 }
