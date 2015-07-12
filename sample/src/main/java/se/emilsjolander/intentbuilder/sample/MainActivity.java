@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new DetailActivityIntentBuilder("ett", "två")
                         .three("tre")
+                        .five("5")
                         .build(MainActivity.this);
                 startActivity(i);
             }
