@@ -17,8 +17,8 @@ buildscript {
 apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
-    compile 'se.emilsjolander:intentbuilder-api:0.13.0'
-    apt 'se.emilsjolander:intentbuilder-compiler:0.13.0'
+    compile 'se.emilsjolander:intentbuilder-api:0.14.0'
+    apt 'se.emilsjolander:intentbuilder-compiler:0.14.0'
 }
 ```
 
