@@ -3,7 +3,6 @@ package se.emilsjolander.intentbuilder.sample;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.TextView;
 
 import se.emilsjolander.intentbuilder.Extra;
@@ -24,6 +23,9 @@ public class DetailActivity extends AppCompatActivity {
     @Extra @Nullable
     String four;
 
+    @Extra("five") @Nullable
+    String mFive;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +36,7 @@ public class DetailActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.two)).setText(two);
         ((TextView)findViewById(R.id.three)).setText(three);
         ((TextView)findViewById(R.id.four)).setText(four);
+        ((TextView)findViewById(R.id.five)).setText(mFive);
     }
 
 }
