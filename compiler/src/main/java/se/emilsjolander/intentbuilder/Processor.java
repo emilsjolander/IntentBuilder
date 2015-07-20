@@ -156,6 +156,22 @@ public class Processor extends AbstractProcessor {
         }
         builder.addMethod(injectMethod.build());
 
+        for (Element e : all) {
+            String paramName = e.getSimpleName().toString();
+            MethodSpec.Builder getterMethod = MethodSpec
+                    .methodBuilder("get" + paramName.substring(0, 1).toUpperCase() + paramName.substring(1))
+                    .returns(ClassName.get(e.asType()))
+                    .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                    .addParameter(Intent.class, "intent")
+                    .addStatement("$T extras = intent.getExtras()", Bundle.class)
+                    .beginControlFlow("if (extras.containsKey($S))", paramName)
+                    .addStatement("return ($T) extras.get($S)", e.asType(), paramName)
+                    .nextControlFlow("else")
+                    .addStatement("return null")
+                    .endControlFlow();
+            builder.addMethod(getterMethod.build());
+        }
+
         return builder.build();
     }
 
