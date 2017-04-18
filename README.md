@@ -1,9 +1,9 @@
-#IntentBuilder
+# IntentBuilder
 Type safe intent building for services and activities.
 
 IntentBuilder is a type safe way of creating intents and populating them with extras. Intents were created to be very dynamic but often times the dynamic nature of intents is not needed and just gets in the way of writing safe code.
 
-##Installation
+## Installation
 ```groovy
 buildscript {
     repositories {
@@ -22,7 +22,7 @@ dependencies {
 }
 ```
 
-##Usage
+## Usage
 Annotate your activities and services with an `@IntentBuilder` annotation so that they are picked up by the library. For every class with an `@IntentBuilder` annotation a class named `MyActivityIntentBuilder` will be generated (Replace 'MyActivity' in the class name whith whatever the name of your Activity or Service class is). If your activity or service takes in parameters via extras in the intent you can now mark field with the `@Extra` annotation and they can be injected with the static `inject` method on the generated intent builder class. Extras can be marked as optional with the `@Nullable` annotation.
 
 Sample activity using IntentBuilder:
@@ -67,5 +67,5 @@ class DownloadService extends IntentService {
 startService(new DownloadServiceIntentBuilder("http://google.com").build(context))
 ```
 
-##Contributing
+## Contributing
 Contributions are very welcome! Both bug fixes and additional features if they make sense. Open a pull request to discuss any changes :)
